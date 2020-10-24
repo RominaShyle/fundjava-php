@@ -32,7 +32,6 @@ h1{
 
 <?php
 
-
 $color = "#a5724e";
 $numer = null;
 $numer_1 = 1234.5555;
@@ -40,7 +39,7 @@ $COLOR = "E kuqe";
 
 
 
-echo "<h1 > $color </h1>";
+echo "<h1> $color </h1>";
 echo "<hr> The sky is ". $color .'.';
 //echo gettype($color);
 
@@ -53,16 +52,16 @@ for($i=0;$i<sizeof($arr);$i++){
     echo "<br>";
     echo $arr[$i].  " eshte ne indeksin $i";
 }
+
+
+
 echo "jemi ketu";
 foreach($arr as $key=>$item){
-    
+
     echo "<br>";
     echo "$item eshte ne indeksin $key";
-   
 
 }
-
-
 
 echo "<pre>";
 var_dump($arr);
@@ -86,9 +85,13 @@ $colors = array(
     "green"=>"#00ff00",
     
 );
-
 echo "<br>";
 
+?>
+<br>
+
+
+<?php
 foreach($colors as $key=>$item){
     if($key == "red")
      echo "<h1 style='color:$item'> $key </h1>";
@@ -99,19 +102,96 @@ foreach($colors as $key=>$item){
 }
 
 
-
-
 function myFunction($var){
 
     echo "<script> alert('$var')</script>";
 }
-myFunction();
-?>
+myFunction("hi");
 
 
+
+
+
+
+
+# FUNKSIONET E ARRAYS
+
+$arr_ = array(); //<--Krijimi i nje array te ri
+// arr_keys() --> Nxjerr gjithe keys te nje array
+//array_push() -> shton elemente ne fund te nje array
+//array_pop()-> heq elementin e fundit te nje array 
+//Krijoni nje array ($arr_) me gjithe celesat e $ages
+
+/*outputi :
+ 0 => "Peter" 
+ 1 =>"Anna" 
+ 2 =>"Lexie"
+*/
+
+$ages = array(
+    "Peter"=>22,
+    "Anna"=>18,
+    "Lexie"=>12
+);
+
+
+foreach($ages as $key=>$value){
+
+    array_push($arr_,$key);
+
+}
+
+echo "<pre>";
+var_dump($arr_);
+echo "</pre>";
+
+array_pop($ages);
+echo "<pre>";
+var_dump($ages);
+echo "</pre>";
+
+
+
+//krijoni nje array me numra dhe afishoni shumen e gjithe elementeve 
+
+/* 
+psh: [9,10,3,2,6]
+Output: Shuma e elementeve eshte : 30
+*/
+
+
+
+$numrat = [9,10,3,2,6];
+$shuma = 0;
+$avg = 0;
+
+
+
+for($i=0; $i<sizeof($numrat); $i++){
+
+
+if($i == sizeof($numrat) - 1 ){
+    echo "$numrat[$i] = ";
+
+}else
+    echo "$numrat[$i] + ";
+    $shuma = $shuma + $numrat[$i];
+
+}
+
+echo  $shuma . "<br> " . $shuma/$i;
+
+
+echo array_sum($numrat);
+
+
+function array_sum($numrat){
 
     
+}
 
+
+?>
 
 </body>
 </html>
