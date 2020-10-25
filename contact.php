@@ -8,15 +8,40 @@ echo "</pre>";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-
+  $username_err = $email_err = $password_err = '';
+  $username = $email = $password = '';
+  
+  
+  
   if(empty($_POST['username'])){
     $username_err = "Ju lutem vendosni username!";
-    echo $username_err;
   }else{
     
     $username = $_POST['username'];
-    echo $username;
+  
   }
+
+
+  if(empty($_POST['email'])){
+    $email_err = "Ju lutem vendosni email!";
+   
+  }else{
+    
+    $email = $_POST['email'];
+  
+  }
+
+
+
+  if(empty($_POST['username'])){
+    $username_err = "Ju lutem vendosni username!";
+  
+  }else{
+    
+    $username = $_POST['username'];
+ 
+  }
+
 
 
 
@@ -43,6 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
 </head>
 <body>
     
@@ -54,11 +80,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" name="username" id="username" required>
+    <small id="error" class="form-text text-muted "><?=$username_err;?></small>
+
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <small id="error" class="form-text text-muted "><?=$email_err;?></small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
