@@ -121,6 +121,9 @@ $arr_ = array(); //<--Krijimi i nje array te ri
 //array_push() -> shton elemente ne fund te nje array
 //array_pop()-> heq elementin e fundit te nje array 
 //Krijoni nje array ($arr_) me gjithe celesat e $ages
+//sizeof() => nxjerr madhesine e array
+//count() = > alias i sizeof
+//sort()
 
 /*outputi :
  0 => "Peter" 
@@ -133,6 +136,7 @@ $ages = array(
     "Anna"=>18,
     "Lexie"=>12
 );
+
 
 
 foreach($ages as $key=>$value){
@@ -182,13 +186,13 @@ if($i == sizeof($numrat) - 1 ){
 echo  $shuma . "<br> " . $shuma/$i;
 
 
-echo array_sum($numrat);
+echo "<br> Prodhimi i numrave eshte: " . array_product($numrat);
+sort($numrat);
+echo "<pre>";
+var_dump($numrat); 
+echo "</pre>";
 
 
-function array_sum($numrat){
-
-    
-}
 
 
 ?>
