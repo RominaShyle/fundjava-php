@@ -12,7 +12,6 @@ function shuma(){
 shuma();
 echo $z; 
 
-//$_SERVER
 
 
 
@@ -26,7 +25,7 @@ echo $z;
 // echo "</pre>";
 
 echo "<pre>";
-var_dump($_REQUEST);
+var_dump($_SERVER);
 echo "</pre>";
 
 
