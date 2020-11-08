@@ -10,31 +10,50 @@ var_dump($_POST);
 echo "</pre>";
 
 
+
 echo "<pre>";
 var_dump($_SERVER['REQUEST_METHOD']);
 echo "</pre>";
 
 
+$username_err = $email_err = $password_err = '';
+
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   
-
-
-  // $username_err = $email_err = $password_err = '';
-  // $username = $email = $password = '';
-
-
-
   if (empty($_POST['username'])) {
     $username_err = "Ju lutem vendosni username!";
+
   } 
+  else if(strlen($_POST['username']) < 5){
+    $username_err = "Username duhet te kete te pakten 5 karaktere!";
+
+  }
   else {
     $username = $_POST['username'];
     echo "faleminderit ". $username;
-
- 
   }
 
+  
 
+  if (empty($_POST['email'])) {
+    $email_err = "Ju lutem vendosni emailin!";
+  } 
+  else {
+    $email = $_POST['email'];
+
+  }
+
+  
+  if (empty($_POST['password'])) {
+    $email_err = "Ju lutem vendosni Password-in!";
+  } 
+  else {
+    $email = $_POST['password'];
+
+  }
+}
 
 
 ?>
@@ -56,6 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </head>
 
+<style>
+  .is-invalid {
+    border-color: #dc3545;
+
+  }
+</style>
+
 <body>
 
   <div class="container my-5">
@@ -63,20 +89,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="row">
       <div class="col-md-4">
         <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
-          <div class="form-group">
+          <div class="form-group .is-invalid" >
             <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" required>
+            <input type="text" class="form-control <?= !empty($username_err) ? 'is-invalid' : ''; ?>" name="username" id="username" required >
             <small id="error" class="form-text text-muted "><?= $username_err; ?></small>
 
           </div>
+
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+            <input required type="email" class="form-control <?= !empty($email_err) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
             <small id="error" class="form-text text-muted "><?= $email_err; ?></small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input required type="password" class="form-control" id="exampleInputPassword1" name="password">
+            <input required type="password" class="form-control <?= !empty($password_err) ? 'is-invalid' : ''; ?>" id="exampleInputPassword1" name="password">
           </div>
 
           <button type="submit" class="btn btn-primary" >Submit</button>
