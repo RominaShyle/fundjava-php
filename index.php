@@ -2,6 +2,7 @@
 <?php echo 123;
 define("MY_TITLE", "Hyrje ne php");
 
+
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +30,7 @@ h1{
 </style>
 
 <body>
+
 
 <?php
 

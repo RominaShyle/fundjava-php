@@ -1,6 +1,16 @@
+
+
 <?php 
 
 #SUPER GLOBALS jane !!!ARRAYS!!!!!
+
+
+
+echo "<pre>";
+var_dump($_SERVER);
+echo "</pre>";
+
+
 
 $x = 12;
 $y = 20;

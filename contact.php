@@ -1,56 +1,80 @@
 <?php
 
+// echo "<pre>";
+// var_dump($_SERVER['REQUEST_METHOD']);
+// echo "</pre>";
+
 
 // echo "<pre>";
 // var_dump($_SERVER['REQUEST_METHOD']);
 // echo "</pre>";
 
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-
-
-
-echo "<pre>";
-var_dump($_SERVER['REQUEST_METHOD']);
-echo "</pre>";
-
 
 $username_err = $email_err = $password_err = '';
+
+function validate($data){
+
+  
+  $data = trim($data);
+  $data = htmlspecialchars($data);
+  $data = stripslashes($data);
+  return $data;
+
+}
+
 
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
   
-  if (empty($_POST['username'])) {
+  if (empty(validate($_POST['username']))) {
     $username_err = "Ju lutem vendosni username!";
 
   } 
-  else if(strlen($_POST['username']) < 5){
+
+  else if(!preg_match('/[^a-zA-Z]/i', validate($_POST['username']))){
+    $username_err = "Username duhet te kete vetem shkronja";
+
+  }
+  
+  else 
+  if(strlen(validate($_POST['username'])) < 5){
     $username_err = "Username duhet te kete te pakten 5 karaktere!";
 
   }
   else {
-    $username = $_POST['username'];
+    $username = validate($_POST['username']);
     echo "faleminderit ". $username;
   }
 
+
+
   
 
-  if (empty($_POST['email'])) {
+  if (empty(validate($_POST['email']))) {
     $email_err = "Ju lutem vendosni emailin!";
   } 
+
+  else if(!filter_var(validate($_POST['email']), FILTER_VALIDATE_EMAIL)){
+    $email_err = "Ju lutem vendoseni email-in ne formatin e duhur!";
+  }
   else {
-    $email = $_POST['email'];
+    $email = validate($_POST['email']);
 
   }
 
   
   if (empty($_POST['password'])) {
-    $email_err = "Ju lutem vendosni Password-in!";
+    $password_err = "Ju lutem vendosni Password-in!";
   } 
+  if(strlen($_POST['password']) < 6){
+    $password_err = "password duhet te kete te pakten 6 karaktere!";
+
+  }
   else {
-    $email = $_POST['password'];
+    $password = validate($_POST['password']);
 
   }
 }
@@ -75,23 +99,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </head>
 
-<style>
-  .is-invalid {
-    border-color: #dc3545;
-
-  }
-</style>
 
 <body>
+<?php require_once('includes/navbar.php'); ?>
+
 
   <div class="container my-5">
     <h1 class="text-center" style="color: #ced4da">CONTACT US </h1>
     <div class="row">
+
       <div class="col-md-4">
         <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
           <div class="form-group .is-invalid" >
             <label for="username">Username</label>
-            <input type="text" class="form-control <?= !empty($username_err) ? 'is-invalid' : ''; ?>" name="username" id="username" required >
+            <input type="text" class="form-control <?= empty($username_err) ? '' : 'is-invalid' ?>" name="username" id="username" required value = "<?= isset($_POST['username']) ?  $_POST['username'] : ''?>">
             <small id="error" class="form-text text-muted "><?= $username_err; ?></small>
 
           </div>
@@ -114,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="col-md-4"></div>
     </div>
   </div>
+
 </body>
 
 </html>
