@@ -1,8 +1,11 @@
 <?php
 
-// echo "<pre>";
-// var_dump($_SERVER['REQUEST_METHOD']);
-// echo "</pre>";
+session_start();
+
+
+ echo "<pre>";
+ var_dump($_SERVER['REQUEST_METHOD']);
+ echo "</pre>";
 
 
 
@@ -30,9 +33,7 @@ echo "Cookie me emrin $cookie_name eshte vendosur dhe e ka vleren $_COOKIE[$cook
 
 //deleting a cookie 
 
-setcookie($cookie_name, $cookie_value, time() - (86400 * 30) , "/" );
 
-echo "Cookie was deleted";
 
 
 
@@ -55,16 +56,15 @@ function validate($data){
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
+
+
+
   
   if (empty(validate($_POST['username']))) {
     $username_err = "Ju lutem vendosni username!";
 
   } 
 
-  else if(!preg_match('/[^a-zA-Z]/i', validate($_POST['username']))){
-    $username_err = "Username duhet te kete vetem shkronja";
-
-  }
   
   else 
   if(strlen(validate($_POST['username'])) < 5){
@@ -104,7 +104,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = validate($_POST['password']);
 
   }
+  if($email_err == '' || $email_err == false && $username_err == '' && $password_err == '')
+  $_SESSION['logged_in'] = true;
 }
+
+
+var_dump($username_err);
+var_dump($password_err);
+
+var_dump($email_err);
+
 
 
 ?>
@@ -162,6 +171,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="col-md-4"></div>
     </div>
   </div>
+
+
 
 </body>
 
