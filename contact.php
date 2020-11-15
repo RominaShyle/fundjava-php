@@ -5,9 +5,36 @@
 // echo "</pre>";
 
 
-// echo "<pre>";
-// var_dump($_SERVER['REQUEST_METHOD']);
-// echo "</pre>";
+
+//setcookie() -> krijon cookien
+$cookie_name = "user";
+$cookie_value = "John";
+
+
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30) , "/" );
+
+
+
+echo "<pre>";
+var_dump($_COOKIE);
+echo "</pre>";
+
+
+if(!isset($_COOKIE[$cookie_name])){
+echo "Cookie me emrin $cookie_name nuk eshte vendosur.";
+
+}
+else
+echo "Cookie me emrin $cookie_name eshte vendosur dhe e ka vleren $_COOKIE[$cookie_name] ";
+
+
+//deleting a cookie 
+
+setcookie($cookie_name, $cookie_value, time() - (86400 * 30) , "/" );
+
+echo "Cookie was deleted";
+
+
 
 
 $username_err = $email_err = $password_err = '';
