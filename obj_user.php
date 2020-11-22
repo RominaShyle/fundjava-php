@@ -13,13 +13,12 @@ var_dump($user);
 
 echo "</pre>";
 
-echo $user->first_name;
+echo $user->first_name = 'ana';
 
 
 echo "<br>";
 
 $user2 = new User;
-
 
 
 $user->setName('Ana');

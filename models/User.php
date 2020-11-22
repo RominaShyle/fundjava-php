@@ -7,11 +7,9 @@ class User{
 
 public $first_name = 'emri 1';
 
-public $last_name = '';
+public $last_name;
 
 private $age = '';
-
-
 
 public function setName($first_name){
 
@@ -31,6 +29,8 @@ public function setAge($age){
 
     $this->age = $age;
 }
+
+
 
 
 
