@@ -1,5 +1,6 @@
 <?php
 
+
 session_start();
 
 
@@ -19,7 +20,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30) , "/" );
 
 
 echo "<pre>";
-var_dump($_COOKIE);
+var_dump($_SESSION);
 echo "</pre>";
 
 
@@ -54,12 +55,7 @@ function validate($data){
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
-
-
-
-  
+ 
   if (empty(validate($_POST['username']))) {
     $username_err = "Ju lutem vendosni username!";
 
@@ -109,10 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-var_dump($username_err);
-var_dump($password_err);
-
-var_dump($email_err);
 
 
 
